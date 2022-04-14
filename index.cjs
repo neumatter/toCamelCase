@@ -105,7 +105,7 @@ function toCamelCase (input, options) {
   return (
     (isArray(input) && arrayToCamelCase(input, options)) ||
     (isObject(input) && objectToCamelCase(input)) ||
-    (isString(input) && camelCase(input)) ||
+    (isString(input) && camelCase(toWords(input))) ||
     unknownToCamelCase(input)
   )
 }

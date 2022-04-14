@@ -103,7 +103,7 @@ export default function toCamelCase (input, options) {
   return (
     (IS.array(input) && arrayToCamelCase(input, options)) ||
     (IS.object(input) && objectToCamelCase(input)) ||
-    (IS.string(input) && camelCase(input)) ||
+    (IS.string(input) && camelCase(toWords(input))) ||
     unknownToCamelCase(input)
   )
 }

@@ -8,7 +8,7 @@ import IS from '@neumatter/is'
  */
 const toWords = i => {
   const CAMEL_REGEX = /[A-Z\xC0-\xD6\xD8-\xDE]?[a-z\xDF-\xF6\xF8-\xFF]+|[A-Z\xC0-\xD6\xD8-\xDE]+(?![a-z\xDF-\xF6\xF8-\xFF])|\d+/g
-  return i.replace(/[\u{0080}-\u{FFFF}]/gu, '').match(CAMEL_REGEX)
+  return i.replace(/[\u{0080}-\u{FFFF}]/gu, '').match(CAMEL_REGEX) || [i]
 }
 
 /**
@@ -34,13 +34,13 @@ const camelCase = a => {
  * @api public
  */
 export const objectToCamelCase = obj => {
+  const output = {}
   for (const [key, value] of Object.entries(obj)) {
-    obj[`${camelCase(toWords(key))}`] = IS.object(value)
+    output[`${camelCase(toWords(key))}`] = IS.object(value)
       ? objectToCamelCase(value)
       : value
-    delete obj[key]
   }
-  return obj
+  return output
 }
 
 /**

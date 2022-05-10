@@ -36,13 +36,13 @@ const camelCase = a => {
  * @api public
  */
 const objectToCamelCase = obj => {
+  const output = {}
   for (const [key, value] of Object.entries(obj)) {
-    obj[`${camelCase(toWords(key))}`] = isObject(value)
+    output[`${camelCase(toWords(key))}`] = isObject(value)
       ? objectToCamelCase(value)
       : value
-    delete obj[key]
   }
-  return obj
+  return output
 }
 
 /**

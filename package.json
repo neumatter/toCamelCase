@@ -1,6 +1,6 @@
 {
   "name": "@neumatter/to-camel-case",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module for converting strings, arrays, and object keys to camelCase.",
   "type": "module",
   "author": "Cal Young",

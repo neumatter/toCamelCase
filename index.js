@@ -18,12 +18,16 @@ const toWords = i => {
  * @api private
  */
 const camelCase = a => {
+  const { length } = a
+  let index = -1
   let result = ''
-  a.forEach((el, i) => {
-    const str = el.toLowerCase()
+  while (++index < length) {
+    const str = a[index].toLowerCase()
     result +=
-      i !== 0 ? str.substring(0, 1).toUpperCase() + str.substring(1) : str
-  })
+    index !== 0 
+      ? str.substring(0, 1).toUpperCase() + str.substring(1)
+      : str
+  }
   return result
 }
 
@@ -35,7 +39,12 @@ const camelCase = a => {
  */
 export const objectToCamelCase = obj => {
   const output = {}
-  for (const [key, value] of Object.entries(obj)) {
+  const keys = Object.keys(obj)
+  const { length } = keys
+  let index = -1
+  while (++index < length) {
+    const value = obj[keys[index]]
+    const key = keys[index]
     output[`${camelCase(toWords(key))}`] = IS.object(value)
       ? objectToCamelCase(value)
       : value
